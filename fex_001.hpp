@@ -12,18 +12,24 @@
 #include <vector>
 #include <memory>
 
-class A {
+class SystemOfEquations {
 public:
-	A(std::initializer_list<int> aa): vv{aa}{};
 private:
 	std::vector<int> vv;
 };
 
-class B {
+class Mesh {
 public:
-	int xx;
 private:
-	std::unique_ptr<A> aa;
+	std::vector<int> ee;
+	friend class MeshMaker;
+};
+
+class MeshMaker {
+public:
+	void generate(int n);
+private:
+	std::unique_ptr<Mesh> mm;
 };
 
 

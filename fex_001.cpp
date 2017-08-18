@@ -8,8 +8,15 @@
 #include "fex_001.hpp"
 #include <iostream>
 
+void MeshMaker::generate(int n)
+{
+    for(int i = 0; i < 5; ++i) {
+    	mm->ee.push_back(i);
+    };
+}
+
 int main () {
-	A aa{1,2,3,4};
+	SystemOfEquations soe;
 	return 0;
 }
 
