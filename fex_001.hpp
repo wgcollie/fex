@@ -12,24 +12,32 @@
 #include <vector>
 #include <memory>
 
-class SystemOfEquations {
-public:
-private:
-	std::vector<int> vv;
-};
-
 class Mesh {
 public:
+	Mesh(std::size_t n)
+ {
+		ee.reserve(n);
+ }
 private:
 	std::vector<int> ee;
 	friend class MeshMaker;
+	friend class SystemOfEquations;
+};
+
+class SystemOfEquations {
+public:
+	void assemblesystem(std::unique_ptr<Mesh> mm);
+private:
+	std::vector<int> vv;
+	std::unique_ptr<Mesh> msh;
 };
 
 class MeshMaker {
 public:
-	void generate(int n);
+	std::unique_ptr<Mesh> generate(int n);
 private:
-	std::unique_ptr<Mesh> mm;
+    int nodeInfo{0};
+    int elementInfo{0};
 };
 
 
