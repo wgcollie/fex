@@ -14,11 +14,8 @@
 
 class Mesh {
 public:
-	Mesh(std::size_t n)
- {
-		ee.reserve(n);
- }
-private:
+	Mesh():ee{}{};
+ private:
 	std::vector<int> ee;
 	friend class MeshMaker;
 	friend class SystemOfEquations;
@@ -26,7 +23,8 @@ private:
 
 class SystemOfEquations {
 public:
-	void assemblesystem(std::unique_ptr<Mesh> mm);
+	SystemOfEquations():vv{}{};
+	void assemblesystem(Mesh mm);
 private:
 	std::vector<int> vv;
 	std::unique_ptr<Mesh> msh;
@@ -34,10 +32,11 @@ private:
 
 class MeshMaker {
 public:
-	std::unique_ptr<Mesh> generate(int n);
+	MeshMaker():nodeInfo{0},elementInfo{0}{};
+	Mesh generate(int n);
 private:
-    int nodeInfo{0};
-    int elementInfo{0};
+    int nodeInfo;
+    int elementInfo;
 };
 
 

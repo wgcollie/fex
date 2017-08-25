@@ -10,25 +10,31 @@
 #include <vector>
 #include <memory>
 
-auto MeshMaker::generate(int n)
+Mesh MeshMaker::generate(int n)
 {
-	std::unique_ptr<Mesh> m0 = std::make_unique<Mesh>(n);
+	nodeInfo = n;
+	elementInfo = n;
+	Mesh meshp{};
     for(int i = 0; i < n; ++i) {
-    	m0->ee.push_back(i);
+    	meshp.ee.push_back(i);
     };
-    return m0;
+    return meshp;
 }
 
-void SystemOfEquations::assemblesystem(std::unique_ptr<Mesh> mm)
+void SystemOfEquations::assemblesystem(Mesh mm)
 {
-	for (const auto& elm: mm->ee) {
+	for (const auto& elm: mm.ee) {
 		std::cout << elm << '\n';
 	};
 }
 
 int main () {
-	MeshMaker mesher;
-	SystemOfEquations soe;
+	MeshMaker mesher{};
+	auto mp = mesher.generate(5);
+
+	SystemOfEquations soe{};
+	soe.assemblesystem(mp);
+
 	return 0;
 }
 
